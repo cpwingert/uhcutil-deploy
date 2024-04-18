@@ -108,7 +108,9 @@ log_curl() {
 }
 
 #curl -L -H "Accept:application/octet-stream" https://raw.githubusercontent.com/cpwingert/uhcutil-deploy/main/bin/arm/uhcutil -o "$INSTALL_PATH/uhcutil"
-log_curl -L -H "\"Accept:application/octet-stream\"" -o "$INSTALL_PATH/uhcutil" $p
+#log_curl -L -H "\"Accept:application/octet-stream\"" -o "$INSTALL_PATH/uhcutil" $p
+
+log_curl -L -o "$INSTALL_PATH/uhcutil" $p
 
 #if ! curl -H "Accept:application/octet-stream" "$GITHUB_DOWNLOAD_PATH/$BINARY_PATH" -o "$INSTALL_PATH/uhcutil"; then
 #    echo "Error: Failed to download the binary. Installation aborted."
