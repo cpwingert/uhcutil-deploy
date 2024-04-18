@@ -132,4 +132,6 @@ else
     echo "The installation path '$INSTALL_PATH' is already included in the PATH variable. No changes made to shell profile files."
 fi
 
-echo "Installation completed successfully!"
+source $current_shell
+
+echo "Installation completed successfully! Run uhcutil to launch application"
