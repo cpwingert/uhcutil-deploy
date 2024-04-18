@@ -37,7 +37,7 @@ prompt_variable "CAVO_API_USERNAME" "$current_shell"
 prompt_variable "CAVO_API_PASSWORD" "$current_shell"
 
 # Prompt the user for the operating system architecture
-#while true; do
+while true; do
     echo "Select your operating system architecture:"
     echo "1. Mac OS (Intel)"
     echo "2. Mac OS (Apple Silicon)"
@@ -49,28 +49,28 @@ prompt_variable "CAVO_API_PASSWORD" "$current_shell"
         1)
             # macOS (Intel)
             BINARY_PATH="amd/uhchutil"
-            #break
+            break
             ;;
         2)
             # macOS (Apple Silicon)
             BINARY_PATH="arm/uhchutil"
-            #break
+            break
             ;;
         3)
             # Linux
             BINARY_PATH="linux/uhchutil"
-            #break
+            break
             ;;
         4)
             # Windows
             BINARY_PATH="win/uhchutil"
-            #break
+            break
             ;;
         *)
             echo "Invalid choice. Please enter a number between 1 and 4."
             ;;
     esac
-#done
+done
 
 # Ensure BINARY_PATH is set
 if [ -z "$BINARY_PATH" ]; then
