@@ -9,7 +9,7 @@ echo "4. Windows"
 read -p "Enter your choice (1-4): " OS_ARCH
 
 # Set the default GitHub download path
-GITHUB_DOWNLOAD_PATH="https://github.com/cpwingert/uhcutil/raw/main/bin/"
+GITHUB_DOWNLOAD_PATH="https://github.com/cpwingert/uhcutil-deploy/raw/main/bin/"
 
 case $OS_ARCH in
     1)
