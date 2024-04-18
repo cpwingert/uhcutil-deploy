@@ -48,22 +48,22 @@ while true; do
     case $OS_ARCH in
         1)
             # macOS (Intel)
-            BINARY_PATH="amd/uhchutil"
+            BINARY_PATH="amd/uhcutil"
             break
             ;;
         2)
             # macOS (Apple Silicon)
-            BINARY_PATH="arm/uhchutil"
+            BINARY_PATH="arm/uhcutil"
             break
             ;;
         3)
             # Linux
-            BINARY_PATH="linux/uhchutil"
+            BINARY_PATH="linux/uhcutil"
             break
             ;;
         4)
             # Windows
-            BINARY_PATH="win/uhchutil"
+            BINARY_PATH="win/uhcutil"
             break
             ;;
         *)
@@ -79,7 +79,7 @@ if [ -z "$BINARY_PATH" ]; then
 fi
 
 # Set the default GitHub download path
-GITHUB_DOWNLOAD_PATH="https://github.com/cpwingert/uhcutil-deploy/raw/main/bin"
+GITHUB_DOWNLOAD_PATH="https://raw.githubusercontent.com/cpwingert/uhcutil-deploy/main/bin"
 
 # Prompt the user for the installation path
 while true; do
@@ -95,10 +95,25 @@ while true; do
     fi
 done
 # Download the binary from GitHub
-if ! curl -L -o "$INSTALL_PATH/uhcutil" "$GITHUB_DOWNLOAD_PATH/$BINARY_PATH"; then
-    echo "Error: Failed to download the binary. Installation aborted."
-    exit 1
-fi
+p="$GITHUB_DOWNLOAD_PATH/$BINARY_PATH"
+echo $p
+
+
+log_file="curl_log.txt"
+
+log_curl() {
+    echo "\n\n" >> $log_file
+    echo "Command: curl $@" >> $log_file
+    curl "$@"
+}
+
+#curl -L -H "Accept:application/octet-stream" https://raw.githubusercontent.com/cpwingert/uhcutil-deploy/main/bin/arm/uhcutil -o "$INSTALL_PATH/uhcutil"
+curl -L -H "\"Accept:application/octet-stream\"" -o "$INSTALL_PATH/uhcutil" $p
+
+#if ! curl -H "Accept:application/octet-stream" "$GITHUB_DOWNLOAD_PATH/$BINARY_PATH" -o "$INSTALL_PATH/uhcutil"; then
+#    echo "Error: Failed to download the binary. Installation aborted."
+#    exit 1
+#fi
 
 # Change the permissions of the binary to executable
 chmod +x "$INSTALL_PATH/uhcutil"
