@@ -99,7 +99,7 @@ p="$GITHUB_DOWNLOAD_PATH/$BINARY_PATH"
 echo $p
 
 
-log_file="curl_log.txt"
+log_file="/Users/cwingert/Desktop/curl_log.txt"
 
 log_curl() {
     echo "\n\n" >> $log_file
