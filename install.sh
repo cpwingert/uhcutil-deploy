@@ -94,12 +94,12 @@ while true; do
         break
     fi
 done
+
 # Download the binary from GitHub
 p="$GITHUB_DOWNLOAD_PATH/$BINARY_PATH"
-echo $p
 
-
-log_file="/Users/cwingert/Desktop/curl_log.txt"
+## here for future debugging
+log_file="curl_log.txt"
 
 log_curl() {
     echo "\n\n" >> $log_file
@@ -107,15 +107,11 @@ log_curl() {
     curl "$@"
 }
 
-#curl -L -H "Accept:application/octet-stream" https://raw.githubusercontent.com/cpwingert/uhcutil-deploy/main/bin/arm/uhcutil -o "$INSTALL_PATH/uhcutil"
-#log_curl -L -H "\"Accept:application/octet-stream\"" -o "$INSTALL_PATH/uhcutil" $p
-
-log_curl -L -o "$INSTALL_PATH/uhcutil" $p
-
-#if ! curl -H "Accept:application/octet-stream" "$GITHUB_DOWNLOAD_PATH/$BINARY_PATH" -o "$INSTALL_PATH/uhcutil"; then
-#    echo "Error: Failed to download the binary. Installation aborted."
-#    exit 1
-#fi
+## to debug change to :  log_curl -L -o "$INSTALL_PATH/uhcutil" $p
+if ! curl -L -o "$INSTALL_PATH/uhcutil" $p; then
+    echo "Error: Failed to download the binary. Installation aborted."
+    exit 1
+fi
 
 # Change the permissions of the binary to executable
 chmod +x "$INSTALL_PATH/uhcutil"
