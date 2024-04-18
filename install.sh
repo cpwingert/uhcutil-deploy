@@ -42,7 +42,6 @@ while true; do
     echo "1. Mac OS (Intel)"
     echo "2. Mac OS (Apple Silicon)"
     echo "3. Linux"
-    echo "4. Windows"
     read -p "Enter your choice (1-4): " OS_ARCH
 
     case $OS_ARCH in
@@ -59,11 +58,6 @@ while true; do
         3)
             # Linux
             BINARY_PATH="linux/uhcutil"
-            break
-            ;;
-        4)
-            # Windows
-            BINARY_PATH="win/uhcutil"
             break
             ;;
         *)
@@ -118,11 +112,9 @@ chmod +x "$INSTALL_PATH/uhcutil"
 
 # Check if the installation path is already in the PATH variable
 if ! echo "$PATH" | grep -q "$INSTALL_PATH"; then
-
     # Update the shell profile file based on the selected architecture
     echo '' >> "$current_shell"
     echo 'export PATH="$PATH:'"$INSTALL_PATH"'"' >> "$current_shell"
-
     echo "Please restart your shell or run 'source $current_shell' to apply changes."
 else
     echo "The installation path '$INSTALL_PATH' is already included in the PATH variable. No changes made to shell profile files."
